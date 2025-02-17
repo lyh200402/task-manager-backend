@@ -1,0 +1,39 @@
+# Node.js依赖项
+node_modules/
+
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器配置文件
+.idea/
+.vscode/
+*.swp
+
+# 缓存文件
+.cache/
+
+# 构建产物
+dist/
+build/
+
+# 本地测试报告
+coverage/
+
+# 临时文件
+*.tmp
+*.temp
+
+# 项目中的特定文件
+public/
+src/assets/styles/
