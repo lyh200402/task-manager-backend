@@ -12,7 +12,8 @@ const SECRET_KEY = "liang20040207";
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "https://task-manager-frontend-flax.vercel.app",
+    origin:
+      "https://task-manager-frontend-git-main-liangyuhaos-projects.vercel.app",
   })
 );
 
