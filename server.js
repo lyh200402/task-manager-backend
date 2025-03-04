@@ -4,14 +4,17 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const SECRET_KEY = "your_secret_key";
+const PORT = 5000;
+const SECRET_KEY = "liang20040207";
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://lyh-task-manager-f.vercel.app",
+  })
+);
 
 const authenticate = (req, res, next) => {
   const token = req.header("Authorization");
@@ -30,10 +33,9 @@ const authenticate = (req, res, next) => {
 };
 
 mongoose
-  .connect("mongodb://localhost:27017/task_manager", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://1700616705:n7886843@cluster-t.2maqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-t"
+  )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
