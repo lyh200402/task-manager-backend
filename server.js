@@ -250,3 +250,5 @@ app.post("/login", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+exports.app = app;
