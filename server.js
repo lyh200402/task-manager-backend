@@ -4,9 +4,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const serverless = require("serverless-http");
 const app = express();
-const PORT = 5000;
+// const PORT = 5000;
 const SECRET_KEY = "liang20040207";
 
 app.use(bodyParser.json());
@@ -35,10 +35,14 @@ const authenticate = (req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://1700616705:n7886843@cluster-t.2maqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-t"
+    "mongodb+srv://1700616705:n7886843@cluster-t.2maqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster-t",
+    {
+      serverSelectionTimeoutMS: 5000, // 5秒后超时
+      socketTimeoutMS: 45000, // 防止查询超时
+    }
   )
   .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB:", err));
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const TaskSchema = new mongoose.Schema(
   {
@@ -247,8 +251,8 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
-exports.app = app;
+module.exports.handler = serverless(app);
